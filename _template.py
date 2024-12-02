@@ -20,12 +20,11 @@ if __name__ == "__main__":
     print(" --- TEST --- ")
     print(part1(testLines))      
     print(part2(testLines))
+    testFile.close()
 
     inFile = open("in.txt") 
     inLines = inFile.readlines()
     print(" --- RESULT --- ")
     print(part1(inLines))      
     print(part2(inLines))
-
-    testFile.close()
     inFile.close()
