@@ -11,7 +11,7 @@ def part1(lines):
 def part2(lines):
     pass
     
-def parseInput(lines):
+def parseInput(lines: list[str]):
     pass
 
 if __name__ == "__main__":
