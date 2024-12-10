@@ -7,21 +7,21 @@ import re
 
 def part1(lines):
     map = parseInput(lines)
-    return sum([len(findTrailScore((y, x), map)) for y in range(len(map)) for x in range(len(map[y])) if map[y][x] == 0])
+    return sum([len(findTrailScore(y, x, map)) for y in range(len(map)) for x in range(len(map[y])) if map[y][x] == 0])
 
-def findTrailScore(curr: tuple[int,int], map: list[list[int]]) -> set[tuple[int,int]]:
-    if map[curr[0]][curr[1]] == 9: return {curr}
-    return set().union(*[findTrailScore((curr[0]+dy, curr[1]+dx), map) for dy,dx in [(-1,0), (1,0), (0,-1), (0,1)] if inMap(map, curr[0]+dy, curr[1]+dx) and map[curr[0]][curr[1]] == map[curr[0]+dy][curr[1]+dx] - 1 ])
+def findTrailScore(y:int, x: int, map: list[list[int]]) -> set[tuple[int,int]]:
+    if map[y][x] == 9: return {(y,x)}
+    return set().union(*[findTrailScore(y+dy, x+dx, map) for dy,dx in [(-1,0), (1,0), (0,-1), (0,1)] if inMap(map, y+dy, x+dx) and map[y][x] == map[y+dy][x+dx] - 1 ])
 
 
 
 def part2(lines):
     map = parseInput(lines)
-    return sum([findTrailRating((y, x), map) for y in range(len(map)) for x in range(len(map[y])) if map[y][x] == 0])
+    return sum([findTrailRating(y, x, map) for y in range(len(map)) for x in range(len(map[y])) if map[y][x] == 0])
 
-def findTrailRating(curr: tuple[int,int], map: list[list[int]]) -> set[tuple[int,int]]:
-    if map[curr[0]][curr[1]] == 9: return 1
-    return sum([findTrailRating((curr[0]+dy, curr[1]+dx), map) for dy,dx in [(-1,0), (1,0), (0,-1), (0,1)] if inMap(map, curr[0]+dy, curr[1]+dx) and map[curr[0]][curr[1]] == map[curr[0]+dy][curr[1]+dx] - 1 ])
+def findTrailRating(y: int, x: int, map: list[list[int]]) -> set[tuple[int,int]]:
+    if map[y][x] == 9: return 1
+    return sum([findTrailRating(y+dy, x+dx, map) for dy,dx in [(-1,0), (1,0), (0,-1), (0,1)] if inMap(map, y+dy, x+dx) and map[y][x] == map[y+dy][x+dx] - 1 ])
     
 
 
