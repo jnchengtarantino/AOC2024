@@ -45,9 +45,9 @@ def inMap(map: list[list], y: int, x: int) -> bool:
 def countCorners(y:int, x:int, garden: list[list[str]]) -> int:
     corners = 0
     for dy, dx in [(-1, -1), (-1, 1), (1, -1), (1, 1)]:
-        # If not along an ongoing edge (which also includes if the adjactent block is a interior corner)
+        # If not along an ongoing edge (which also includes if the adjacent block is a interior corner)
         if not (isSamePlot(garden, y, x, dy, 0) ^ isSamePlot(garden, y, x, 0, dx)):
-            # If not an interior corner or exterior corner
+            # If an interior corner or exterior corner
             if (not isSamePlot(garden, y, x, dy, 0) and not isSamePlot(garden, y, x, 0, dx)) or (isSamePlot(garden, y, x, dy, 0) and isSamePlot(garden, y, x, 0, dx) and not isSamePlot(garden, y, x, dy, dx)):
                 corners = corners + 1
     return corners
